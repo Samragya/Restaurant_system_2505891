@@ -54,7 +54,7 @@ require_once '../config/db.php';
             ORDER BY menu_items.created_at DESC
         ");
 
-        $items = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $items = $stmt->fetchAll(PDO::FETCH_ASSOC);  //convert to php arrays after retrieving rows from db
 
         if (!$items) {
             echo "<p style='text-align:center; color:#666;'>No menu items available.</p>";

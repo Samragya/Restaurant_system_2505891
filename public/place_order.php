@@ -31,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt = $pdo->prepare("INSERT INTO orders (customer_name, table_number, total, status) VALUES (?, ?, ?, ?)");
     $stmt->execute([$customer_name, $table_number, $total, $status]);
 
-    $order_id = $pdo->lastInsertId();
+    $order_id = $pdo->lastInsertId(); //retrieve last order id
 
     // Insert order items
     $stmt = $pdo->prepare("INSERT INTO order_items (order_id, item_id, item_name, price, qty, line_total) VALUES (?, ?, ?, ?, ?, ?)");

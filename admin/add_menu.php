@@ -4,7 +4,7 @@ require_admin();
 
 $error = '';
 
-// Fetch categories for dropdown
+// Fetch categories for creating new item from db
 try {
     $categories = $pdo->query("SELECT id, name FROM categories ORDER BY name ASC")
                       ->fetchAll(PDO::FETCH_ASSOC);
@@ -27,17 +27,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } else {
         try {
             $stmt = $pdo->prepare(
-                "INSERT INTO menu_items (name, price, category_id)
+                //creating new items
+                "INSERT INTO menu_items (name, price, category_id)          
                  VALUES (:name, :price, :category_id)"
             );
-
+        //push newly created data to db:
             $stmt->execute([
                 'name'        => $name,
                 'price'       => $price,
                 'category_id' => $category_id
             ]);
 
-            header("Location: dashboard.php?msg=Menu item added");
+            // $_SESSION['success'] = "Menu item added";
+            header("Location: dashboard.php?msg= menu item  added");
             exit;
 
         } catch (PDOException $e) {

@@ -11,7 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         die("CSRF validation failed");
     }
 
-    $username = trim($_POST['username'] ?? '');
+    $username = trim($_POST['username'] ?? ''); //?? '' removes undefined index warnings
     $password = $_POST['password'] ?? '';
 
     if ($username === '' || $password === '') {
@@ -74,3 +74,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 </body>
 </html>
+
+
+
+
+
+
+//$password = 'samsi69';
+$hash = password_hash($password, PASSWORD_DEFAULT);
+
+$stmt = $pdo->prepare(
+    "UPDATE admins SET username = ?, password = ? WHERE id = 1"
+);
+$stmt->execute(['samsi', $hash]);

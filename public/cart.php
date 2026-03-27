@@ -13,7 +13,7 @@ if (isset($_POST['clear'])) {
     exit;
 }
 
-/* ADD ITEM */
+
 if (!isset($_POST['item_id'])) {
     echo "Invalid request";
     exit;
@@ -23,8 +23,8 @@ $item_id = (int) $_POST['item_id'];
 
 /* Fetch item safely */
 $stmt = $pdo->prepare("SELECT id, name, price FROM menu_items WHERE id = ?");
-$stmt->execute([$item_id]);
-$item = $stmt->fetch(PDO::FETCH_ASSOC);
+$stmt->execute([$item_id]);  //backend->database data transfer
+$item = $stmt->fetch(PDO::FETCH_ASSOC);//re-fetch from db -> backend
 
 if (!$item) {
     echo "Item not found";
@@ -32,7 +32,7 @@ if (!$item) {
 }
 
 /* Add to session cart */
-if (isset($_SESSION['cart'][$item_id])) {
+if (isset($_SESSION['cart'][$item_id])) {      //prevent data duplication,if same only adds quantity
     $_SESSION['cart'][$item_id]['qty']++;
 } else {
     $_SESSION['cart'][$item_id] = [
@@ -44,7 +44,7 @@ if (isset($_SESSION['cart'][$item_id])) {
 
 /* Display cart */
 $total = 0;
-$output = '';
+$output = '';  //html returned to ajax
 
 foreach ($_SESSION['cart'] as $c) {
     $line = $c['price'] * $c['qty'];
@@ -58,4 +58,4 @@ foreach ($_SESSION['cart'] as $c) {
 
 $output .= "<hr><strong>Total: Rs." . number_format($total, 2) . "</strong>";
 
-echo $output;
+echo $output;  // send and update data from backend -> frontend via ajax

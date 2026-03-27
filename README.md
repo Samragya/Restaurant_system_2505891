@@ -26,7 +26,7 @@ The goal of this project is to:
 
 ---
 
-## High-Level System Flow (Exam Explanation)
+## My system flow
 
 1. User opens the website (`index.php`)
 2. Menu items are fetched from database
@@ -101,18 +101,18 @@ restaurant_system/
 <!-- ##  Admin Login Credentials
 
 
-✔ Password is hashed using `password_hash()`  
-✔ Verified using `password_verify()` -->
+ Password is hashed using `password_hash()`  
+ Verified using `password_verify()` -->
 
 <!-- ---
 
-## ⚙️ Installation & Setup (Laragon)
+##  Installation & Setup (Laragon)
 
-### 1️⃣ Move Project
+### 1 Move Project
  -->
 
 
-<!-- ### 2️⃣ Create Database -->
+<!-- ### Create Database -->
 <!-- ```sql -->
 <!-- -- CREATE DATABASE restaurant_system;
 
@@ -122,7 +122,11 @@ restaurant_system/
 -- $pass = "";
  -->
 
-															-- Features Implemented
+
+
+
+
+<!-- 															-- Features Implemented
 
 -- Menu display from database
 
@@ -148,4 +152,4 @@ restaurant_system/
 
 -- Admin order status UI not added
 
--- Designed for academic use
+-- Designed for academic use -->
